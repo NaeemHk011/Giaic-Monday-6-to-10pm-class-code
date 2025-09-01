@@ -46,20 +46,10 @@ bank_agent = Agent(
     name="Bank Agent",
     instructions=dynamic_instruction,
     tools=[check_balance],
-    input_guardrails=[check_bank_related], 
-    model_settings=ModelSettings(
-        temperature=0.2,
-          tool_choice='required',
-          max_tokens=1000,
-          parallel_tool_calls=None,
-          frequency_penalty = 0.3,
-          presence_penalty = 0.2
-          ),
-    reset_tool_choice=False,
-    tool_use_behavior='run_llm_again'
+    input_guardrails=[check_bank_related],
 )
 
 user_context = Account(name="Asharib", pin=1234)
 
-result = Runner.run_sync(bank_agent, "what is my balance my acount 93849348", context=user_context,max_turns=3)
+result = Runner.run_sync(bank_agent, "what is my balance my acount 93849348", context=user_context,max_turns=1)
 print(result.final_output)
